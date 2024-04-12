@@ -1,0 +1,7 @@
+{
+  "name": "Best_BBB",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
