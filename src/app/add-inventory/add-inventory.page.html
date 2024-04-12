@@ -47,6 +47,9 @@
         <ion-label></ion-label>
         <ion-button (click)="takePicture()">Capture Image</ion-button>
         <!-- Display the captured image here if needed -->
+        <div class="preview">
+          <ion-img [src]="previewImage" ></ion-img>
+        </div>
       </ion-item>
 
     </ion-card>
