@@ -44,8 +44,7 @@
       </ion-item><br>
 
       <ion-item>
-        <ion-label></ion-label>
-        <ion-button (click)="takePicture()">Capture Image</ion-button>
+        <ion-button (click)="takePicture()" expand="full" size="medium">Capture Image</ion-button>
         <!-- Display the captured image here if needed -->
         <div class="preview">
           <ion-img [src]="previewImage" ></ion-img>
