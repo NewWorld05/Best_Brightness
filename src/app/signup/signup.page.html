@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>signup</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h1>SIGNUP</h1>
+  <div class="center" padding text-center>
+    <img src="assets/images/invent11.jpg" alt="">
+
+    <ion-card>
+      <ion-list>
+
+        <ion-item>
+          <ion-label>User</ion-label>
+          <ion-select [(ngModel)]="selectedUser" name="category" required>
+            <ion-select-option value="Picker">Picker</ion-select-option>
+            <ion-select-option value="Manager">Manager</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item><ion-icon name="person-outline" slot="end"></ion-icon>
+          <ion-input type="text" placeholder="Enter your Name" [(ngModel)]="name" Validators.required></ion-input>
+        </ion-item>
+
+        <ion-item><ion-icon name="person-outline" slot="end"></ion-icon>
+          <ion-input type="text" placeholder="Enter your Surname" [(ngModel)]="surname" Validators.required></ion-input>
+        </ion-item>
+
+        <ion-item><ion-icon name="mail-outline" slot="end"></ion-icon>
+          <ion-input type="email" placeholder="Enter your Email" [(ngModel)]="email" Validators.email></ion-input>
+        </ion-item>
+
+        <ion-item><ion-icon name="lock-closed-outline" slot="end"></ion-icon>
+          <ion-input type="password" placeholder="Enter your Password" [(ngModel)]="password" Validators.required></ion-input>
+        </ion-item>
+
+      </ion-list>
+    </ion-card>
+    <div class="btn-pos">
+      <ion-button expand="block" fill="outline" size="medium" (click)="reg()">Register</ion-button>
+    </div>
+  </div>
+</ion-content>
+

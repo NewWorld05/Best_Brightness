@@ -1,27 +1,32 @@
-#container {
-  text-align: center;
-
+.center{
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  width: 90%;
+  top: 20%;
+  left: 15px;
+  text-align: center;
+  align-items: center;
+  height: 100%;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+[h1]{
+  font-style: oblique;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.wel{
+  top: 25%;
+  text-align: center;
+  left: 16px;
 }
 
-#container a {
-  text-decoration: none;
+.btn-pos{
+  bottom: 25%;
+  align-items: center;
+}
+
+center img{
+  width: 110px;
+}
+
+.log-size{
+  width: 110px;
 }

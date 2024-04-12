@@ -1,20 +1,28 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="end">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>
-      Blank
+      BestBrightness
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content >
+  <div class="center" padding text-center>
+    <img src="assets/images/invent11.jpg" alt="">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <div class="wel"><h1>Welcome</h1>
+      <p>To Best Brightness</p>
+    </div>
+    <br>
+
+    <div class="btn-pos">
+      <ion-button expand="block" fill="solid" size="medium" routerLink="/login">Login</ion-button>
+      <ion-button expand="block" fill="outline" size="medium" type="submit" routerLink="/signup">Sign Up</ion-button>
+    </div>
+    
   </div>
 </ion-content>
+

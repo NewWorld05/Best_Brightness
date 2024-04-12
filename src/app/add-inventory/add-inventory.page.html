@@ -1,0 +1,81 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add to Inventory</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-card>
+
+      <ion-card-title>Product Details</ion-card-title>
+
+      <ion-item>
+        <ion-label>Date</ion-label>
+        <ion-datetime [showDefaultButtons]="true" name="date" [(ngModel)]="inventory.date" required></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Category</ion-label>
+        <ion-select [(ngModel)]="inventory.category" name="category" required>
+          <ion-select-option value="Cleaning Detergents">Cleaning Detergents</ion-select-option>
+          <ion-select-option value="Plastics">Plastics</ion-select-option>
+          <ion-select-option value="Cleaning Equipment">Cleaning Equipment</ion-select-option>
+          <ion-select-option value="Miscellaneous">Miscellaneous</ion-select-option>
+        </ion-select>
+      </ion-item><br>
+
+      <ion-item>
+        <ion-label></ion-label>
+        <ion-input [(ngModel)]="inventory.itemName" name="itemName" label="Item Name" label-placement="floating" fill="outline" placeholder="Enter item name" required></ion-input>
+      </ion-item><br>
+
+      <ion-item>
+        <ion-label></ion-label>
+        <ion-input [(ngModel)]="inventory.size" name="size" label="Item Size" label-placement="floating" fill="outline" placeholder="Enter item size" required></ion-input>
+      </ion-item><br>
+
+      <ion-item>
+        <ion-label></ion-label>
+        <ion-input [(ngModel)]="inventory.quantity" name="quantity" type="number" label="Item Quantity" label-placement="floating" fill="outline" placeholder="Enter item quantity" required></ion-input>
+      </ion-item><br>
+
+      <ion-item>
+        <ion-label></ion-label>
+        <ion-button (click)="takePicture()">Capture Image</ion-button>
+        <!-- Display the captured image here if needed -->
+      </ion-item>
+
+    </ion-card>
+
+    <ion-card>
+      <ion-card-title>Picker Details</ion-card-title>
+
+      <ion-item>
+        <ion-label></ion-label>
+        <ion-input [(ngModel)]="picker.name" name="pickerName" label="Picker Name" label-placement="floating" fill="outline" placeholder="Enter Name" required></ion-input>
+      </ion-item><br>
+
+      <ion-item>
+        <ion-label></ion-label>
+        <ion-input [(ngModel)]="picker.surname" name="pickerSurname" label="Picker Surname" label-placement="floating" fill="outline" placeholder="Enter Surname" required></ion-input>
+      </ion-item><br>
+
+      <ion-item>
+        <ion-label></ion-label>
+        <ion-input [(ngModel)]="picker.employeeNumber" name="employeeNumber" label="Employee Number" label-placement="floating" fill="outline" placeholder="Enter Employee Number" required></ion-input>
+      </ion-item>
+
+    </ion-card>
+
+    
+  </ion-list>
+
+  <ion-button type="submit" (click)="submit()">Add to Inventory</ion-button>
+
+  <!-- <ion-button type="submit" [disabled]="!inventoryForm.valid">Add to Inventory</ion-button> -->
+
+</ion-content>
