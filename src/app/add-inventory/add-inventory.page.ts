@@ -38,15 +38,21 @@ export class AddInventoryPage implements OnInit {
   ngOnInit() {
   }
 
-  clear(){
-    this.inventory.date = '',
-    this.inventory.category = '',
-    this.inventory.itemName = '',
-    this.inventory.size = '',
-    this.inventory.quantity = '',
-    this.picker.name = '',
-    this.picker.surname = '',
-    this.picker.employeeNumber = ''
+  clear() {
+    this.inventory = {
+      date: '',
+      category: '',
+      itemName: '',
+      size: '',
+      quantity: ''
+    };
+    this.picker = {
+      name: '',
+      surname: '',
+      employeeNumber: ''
+    };
+    this.previewImage = '';
+    this.imageUrl = '';
   };
 
   async submit() {
