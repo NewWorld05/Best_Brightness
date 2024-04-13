@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>main</ion-title>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="end">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Main Menu</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -51,6 +54,19 @@
         <img alt="Silhouette of mountains" src="assets/images/analy3.jpg" height="260px" width="260px"/>
         <ion-card-header>
           <ion-card-title class="a">Analytics</ion-card-title>
+          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          Here's a small text description for the card content. Nothing more, nothing less.
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+
+    <ion-item routerLink="/store">
+      <ion-card>
+        <img alt="Silhouette of mountains" src="assets/images/invent12.jpg" />
+        <ion-card-header>
+          <ion-card-title class="a">Inventory</ion-card-title>
           <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>

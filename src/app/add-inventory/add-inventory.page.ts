@@ -19,7 +19,8 @@ export class AddInventoryPage implements OnInit {
     category: '',
     itemName: '',
     size: '',
-    quantity: ''
+    quantity: '',
+    itemCode:''
   };
 
   picker = {
@@ -44,7 +45,8 @@ export class AddInventoryPage implements OnInit {
       category: '',
       itemName: '',
       size: '',
-      quantity: ''
+      quantity: '',
+      itemCode:''
     };
     this.picker = {
       name: '',
@@ -72,6 +74,7 @@ export class AddInventoryPage implements OnInit {
         pickerSurname: this.picker.surname,
         employeeNumber: this.picker.employeeNumber,
         capturedPhotosUrl: imageUrl,
+        itemCode:this.inventory.itemCode
       }).then(() =>{
   // Reset form after successful submission
       this.clear();
