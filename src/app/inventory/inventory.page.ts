@@ -89,15 +89,15 @@ moveItemToShop(item: any, quantityToMove: number) {
           this.afDatabase.collection('store').add(
     {
       date: item.date6, // Set the date property to the ISO 8601 datetime string
-      category: this.inventory,
+      category: item.inventory,
       itemName: item.itemName,
-      size: this.inventory.size,
-      quantity: this.inventory.quantity,
-      pickerName: this.picker.name,
-      pickerSurname: this.picker.surname,
-      employeeNumber: this.picker.employeeNumber,
-      capturedPhotosUrl: imageUrl,
-      itemCode:this.inventory.itemCode
+      size: item.size,
+      quantity: item.quantity,
+      pickerName: item.name,
+      pickerSurname: item.surname,
+      employeeNumber: item.employeeNumber,
+      capturedPhotosUrl: item.imageUrl,
+      itemCode: item.itemCode
 
 
 
