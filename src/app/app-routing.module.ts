@@ -40,16 +40,12 @@ const routes: Routes = [
     loadChildren: () => import('./analytics/analytics.module').then( m => m.AnalyticsPageModule)
   },
   {
-    path: 'inventory-minus',
-    loadChildren: () => import('./inventory-minus/inventory-minus.module').then( m => m.InventoryMinusPageModule)
-  },
-  {
-    path: 'items-moved-to-shop',
-    loadChildren: () => import('./items-moved-to-shop/items-moved-to-shop.module').then( m => m.ItemsMovedToShopPageModule)
-  },
-  {
     path: 'store',
     loadChildren: () => import('./store/store.module').then( m => m.StorePageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },
 ];
 

@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="secondary">
     <ion-buttons slot="end">
-      <ion-back-button></ion-back-button>
+      <ion-back-button default-href="#"></ion-back-button>
     </ion-buttons>
     <ion-title>Add to Inventory</ion-title>
   </ion-toolbar>
@@ -48,12 +48,15 @@
         <ion-input [(ngModel)]="inventory.itemCode" name="itemCode" type="number" label="Item Code" label-placement="floating" fill="outline" placeholder="Enter item code" required></ion-input>
       </ion-item><br>
 
-      <ion-item>
-        <ion-button (click)="takePicture()" expand="full" size="medium">Capture Image</ion-button>
+      <ion-item class="a">
+        
         <!-- Display the captured image here if needed -->
         <div class="preview">
           <ion-img [src]="previewImage" ></ion-img>
+          
+          <ion-button (click)="takePicture()" expand="full" size="medium">Capture Image</ion-button>
         </div>
+        
       </ion-item>
 
     </ion-card>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-inventory',
@@ -11,7 +12,7 @@ export class InventoryPage implements OnInit {
   inventory: any[] = []; // Initialize inventory array
   quantityToMove: number = 0; // Initialize quantityToMove variable
 
-  constructor(private afDatabase: AngularFirestore) { }
+  constructor(private afDatabase: AngularFirestore, private toastController: ToastController) { }
 
   ngOnInit() {
     this.getInventory();
@@ -36,10 +37,15 @@ moveItemToShop(item: any, quantityToMove: number) {
           // Use the retrieved document ID to update the inventory
           this.afDatabase.collection('inventory').doc(doc.id).update({
             quantity: item.quantity - quantityToMove // Decrease quantity by the selected amount
-          }).then(() => {
-            console.log(`${quantityToMove} ${item.itemName} moved to the shop successfully`);
-          }).catch(error => {
+          })
+          .then(() => {
+            //console.log(`${quantityToMove} ${item.itemName} moved to the shop successfully`);
+            window.alert(`${quantityToMove} ${item.itemName} moved to the shop successfully`);
+            this.presentToast(`${quantityToMove} ${item.itemName} moved to the shop successfully`);
+          })
+          .catch(error => {
             console.error('Error moving item to the shop:', error);
+            
           });
         });
       });
@@ -71,42 +77,47 @@ moveItemToShop(item: any, quantityToMove: number) {
 
       this.afDatabase.collection('store', ref => ref.where('itemCode', '==', item.itemCode)).get().subscribe(querySnapshot => {
         if (!querySnapshot.empty) {
-          querySnapshot.forEach((doc:any) => {
-            const q= doc[0];
-            const q2=q.data();
+          querySnapshot.forEach((doc: any) => {
+            const existingQuantity = doc.data().quantity; // Access quantity directly from doc.data()
             // Use the retrieved document ID to update the quantity in the store
             this.afDatabase.collection('store').doc(doc.id).update({
-              quantity:  q2.quantity + quantityToMove // Add the new quantity to the existing quantity
-            }).then(() => {
-              console.log(`${quantityToMove} ${item.itemName} moved to the shop successfully`);
-            }).catch(error => {
+              quantity: existingQuantity + quantityToMove // Add the new quantity to the existing quantity
+            })
+            .then(() => {
+             // console.log(`${quantityToMove} ${item.itemName} moved to the shop successfully`);
+             window.alert(`${quantityToMove} ${item.itemName} moved to the shop successfully`);
+              this.presentToast(`${quantityToMove} ${item.itemName} moved to the shop successfully`);
+            })
+            .catch(error => {
               console.error('Error moving item to the shop:', error);
+              
             });
           });
         } else {
-        
-          // If no document exists with the provided itemCode, add a new document to the store collection
-          this.afDatabase.collection('store').add(
-    {
-      date: item.date6, // Set the date property to the ISO 8601 datetime string
-      category: item.inventory,
-      itemName: item.itemName,
-      size: item.size,
-      quantity: item.quantity,
-      pickerName: item.name,
-      pickerSurname: item.surname,
-      employeeNumber: item.employeeNumber,
-      capturedPhotosUrl: item.imageUrl,
-      itemCode: item.itemCode
 
-
-
-    }
-          ).then(() => {
-            console.log(`${quantityToMove} ${item} added to the store successfully`);
-          }).catch(error => {
-            console.error('Error adding item to the store:', error);
-          });
+            // If no document exists with the provided itemCode, add a new document to the store collection
+            this.afDatabase.collection('store').add({
+              date: item.date, // Set the date property to the ISO 8601 datetime string
+              category: item.category,
+              itemName: item.itemName,
+              size: item.size,
+              quantity: item.quantityToMove,
+              pickerName: item.pickerName,
+              pickerSurname: item.pickerSurname,
+              employeeNumber: item.employeeNumber,
+              capturedPhotosUrl: item.capturedPhotosUrl,
+              itemCode: item.itemCode
+            })
+            .then(() => {
+             // console.log(`${quantityToMove} ${item.itemName} added to the store successfully`);
+             window.alert(`${quantityToMove} ${item.itemName} added to the store successfully`);
+              this.presentToast(`${quantityToMove} ${item.itemName} added to the store successfully`);
+            })
+            .catch(error => {
+              console.error('Error adding item to the store:', error);
+              
+            });
+         
         }
       });
       
@@ -114,25 +125,22 @@ moveItemToShop(item: any, quantityToMove: number) {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
   } else {
-    alert('Invalid quantity. Please enter a valid quantity to move.');
+   // alert('Invalid quantity. Please enter a valid quantity to move.');
+    this.presentToast('Invalid quantity. Please enter a valid quantity to move.');
   }
+}
+
+
+
+async presentToast(message: string) {
+  const toast = await this.toastController.create({
+    message: message,
+    duration: 5000, // Duration in milliseconds
+    position: 'bottom' // Position of the toast
+  });
+  toast.present();
 }
 
 

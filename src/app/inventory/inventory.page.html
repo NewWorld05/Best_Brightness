@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="secondary">
     <ion-buttons slot="end">
-      <ion-back-button></ion-back-button>
+      <ion-back-button default-href="#"></ion-back-button>
     </ion-buttons>
     <ion-title>Inventory</ion-title>
   </ion-toolbar>
@@ -9,6 +9,7 @@
 
 <ion-content padding>
   <ion-list>
+    <ion-card>
     <ion-item *ngFor="let item of inventory">
       <ion-thumbnail slot="start">
         <img [src]="item.capturedPhotosUrl">
@@ -16,17 +17,19 @@
       <ion-label>
         <h2>{{ item.itemName }}</h2>
         <p>Category: {{ item.category }}</p>
+        <p>Item Code: {{ item.itemCode }}</p>
         <p>Size: {{ item.size }}</p>
         <p>Quantity: {{ item.quantity }}</p>
-        <p>Picker: {{ item.pickerName }} {{ item.pickerSurname }}</p>
+        <p>Picker: {{ item.pickerName }} {{ item.pickerSurname }} {{ item.employeeNumber }}</p>
         <p>Date: {{ item.date | date: 'medium' }}</p>
       </ion-label>
       <ion-item>
-        <ion-label>Quantity to Move</ion-label>
+        <!-- <ion-label>Quantity to Move</ion-label> -->
         <ion-input type="number" [(ngModel)]="item.quantityToMove"></ion-input>
       </ion-item>
       <ion-button (click)="moveItemToShop(item, item.quantityToMove)" color="primary" expand="block">Move to Shop</ion-button>
     </ion-item>
+  </ion-card><br><br>
   </ion-list>
   
 </ion-content>

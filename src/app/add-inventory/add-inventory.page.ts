@@ -3,6 +3,7 @@ import { Camera, CameraResultType } from '@capacitor/camera';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-inventory',
@@ -33,7 +34,8 @@ export class AddInventoryPage implements OnInit {
 
   constructor(
     private afDatabase: AngularFirestore,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private toastController: ToastController
   ) { }
 
   ngOnInit() {
@@ -79,14 +81,30 @@ export class AddInventoryPage implements OnInit {
   // Reset form after successful submission
       this.clear();
       console.log('SAVED SUCCESSFULLY'); // You might want to handle this differently in production
+      window.alert("Saved Successfully");
+      this.presentToast('Product was uploaded into the system successfully');
       })
   
     
     } catch (error) {
       console.log('Error saving inventory data:', error);
+      window.alert("Product upload unsuccessful");
+      this.presentToast('There is an error uploading the product into the system');
       // Handle specific errors accordingly
     }
   }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 5000, // Duration in milliseconds
+      position: 'bottom' // Position of the toast
+    });
+    toast.present();
+  }
+
+
+
   
     /*async submit(){
 

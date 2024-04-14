@@ -20,7 +20,7 @@ export class StorePage implements OnInit {
 
   getSelectedItems() {
     // Query Firestore to get items where quantityToMove is not zero
-    this.afDatabase.collection('store', ref => ref.where('quantityToMove', '>', 0))
+    this.afDatabase.collection('store', ref => ref.where('quantity', '>', 0))
       .valueChanges().subscribe((data: any[]) => {
         this.selectedItems = data;
       });

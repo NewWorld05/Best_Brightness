@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="secondary">
     <ion-buttons slot="end">
-      <ion-back-button></ion-back-button>
+      <ion-back-button default-href="#"></ion-back-button>
     </ion-buttons>
     <ion-title>Store</ion-title>
   </ion-toolbar>
@@ -18,7 +18,8 @@
         <p>Category: {{ selectedItem.category }}</p>
         <p>Size: {{ selectedItem.size }}</p>
         <p>Quantity: {{ selectedItem.quantity }}</p>
-        <p>Picker: {{ selectedItem.pickerName }} {{ selectedItem.pickerSurname }}</p>
+        <p>Item Code: {{ selectedItem.itemCode }}</p>
+        <p>Deliverer: {{ selectedItem.pickerName }} {{ selectedItem.pickerSurname }}</p>
         <p>Date: {{ selectedItem.date | date: 'medium' }}</p>
       </ion-label>
     </ion-item>

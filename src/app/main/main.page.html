@@ -1,8 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="secondary">
-    <ion-buttons slot="end">
-      <ion-back-button></ion-back-button>
+    <div class="d">
+    <ion-buttons slot="end"><ion-icon name="person-circle-sharp" routerLink="/home"></ion-icon>
     </ion-buttons>
+    <ion-buttons slot="end"><ion-icon name="exit" routerLink="/home"></ion-icon>
+    </ion-buttons>
+    </div>
     <ion-title>Main Menu</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -11,69 +14,61 @@
   <ion-list class="center">
 
     <ion-item routerLink="/inventory">
-      <ion-card>
+      <ion-card color="medium">
         <img alt="Silhouette of mountains" src="assets/images/invent12.jpg" />
         <ion-card-header>
-          <ion-card-title class="a">Inventory</ion-card-title>
-          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+          <ion-card-title>Inventory</ion-card-title>
+          <ion-card-subtitle>Top of the morning to you Sir Inventory</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
-          Here's a small text description for the card content. Nothing more, nothing less.
+          View items in the Inventory
         </ion-card-content>
       </ion-card>
     </ion-item>
 
     <ion-item routerLink="/add-inventory">
-      <ion-card>
-        <img alt="Silhouette of mountains" src="assets/images/invent10.jpg" />
+      <ion-card color="medium">
+        <img alt="Silhouette of mountains" src="assets/images/addToInvent2.gif" />
         <ion-card-header>
           <ion-card-title>Add to Inventory</ion-card-title>
-          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+          <ion-card-subtitle>How do you do, Lady Add 'to Inventory</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
-          Here's a small text description for the card content. Nothing more, nothing less.
-        </ion-card-content>
-      </ion-card>
-    </ion-item>
-
-    <ion-item routerLink="/inventory-minus">
-      <ion-card>
-        <img alt="Silhouette of mountains" src="assets/images/invent13.jpg"/>
-        <ion-card-header>
-          <ion-card-title class="a">Move to Store</ion-card-title>
-          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content>
-          Here's a small text description for the card content. Nothing more, nothing less.
-        </ion-card-content>
-      </ion-card>
-    </ion-item>
-
-    <ion-item routerLink="/analytics" class="c">
-      <ion-card>
-        <img alt="Silhouette of mountains" src="assets/images/analy3.jpg" height="260px" width="260px"/>
-        <ion-card-header>
-          <ion-card-title class="a">Analytics</ion-card-title>
-          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content>
-          Here's a small text description for the card content. Nothing more, nothing less.
+         Add items to the Inventory
         </ion-card-content>
       </ion-card>
     </ion-item>
 
     <ion-item routerLink="/store">
-      <ion-card>
-        <img alt="Silhouette of mountains" src="assets/images/invent12.jpg" />
+      <ion-card color="medium">
+        <img alt="Silhouette of mountains" src="assets/images/shop2.gif" />
         <ion-card-header>
-          <ion-card-title class="a">Inventory</ion-card-title>
-          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+          <ion-card-title>Store</ion-card-title>
+          <ion-card-subtitle>Miss Store, How are you</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
-          Here's a small text description for the card content. Nothing more, nothing less.
+          View products in the store
         </ion-card-content>
       </ion-card>
     </ion-item>
+
+    <ion-item routerLink="/analytics">
+      <ion-card color="medium">
+        <img alt="Silhouette of mountains" src="assets/images/analygif.gif" />
+        <ion-card-header>
+          <ion-card-title>Analytics</ion-card-title>
+          <ion-card-subtitle>Greetings Mr Analysis</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          Analyse which product is popular
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+
+    
+
+
+    
       
   </ion-list>
 
