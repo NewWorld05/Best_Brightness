@@ -34,6 +34,7 @@
     "chart.js": "^4.4.2",
     "firebase": "^10.11.0",
     "ionicons": "^7.0.0",
+    "ng2-charts": "^6.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
@@ -50,6 +51,7 @@
     "@angular/language-service": "^17.0.2",
     "@capacitor/cli": "5.7.4",
     "@ionic/angular-toolkit": "^11.0.1",
+    "@types/chart.js": "^2.9.41",
     "@types/jasmine": "~5.1.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
