@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { GoogleAuthProvider } from 'firebase/auth';
+import { AuthServiceService } from '../auth-service.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginPage implements OnInit {
   email: string = '';
   password: string = '';
 
-  constructor(private router:Router,private auth:AngularFireAuth, private toastController: ToastController) { }
+  constructor(private router:Router,private auth:AngularFireAuth, private toastController: ToastController, private navCtrl: NavController, private authService: AuthServiceService) { }
 
   ngOnInit() {
   }
@@ -34,16 +35,16 @@ export class LoginPage implements OnInit {
     }
   }
 
-  // async loginWithGoogle() {
-  //   try {
-  //     const user = await this.authService.loginWithGoogle();
-  //     // Handle successful login (e.g., navigate to another page)
-  //     this.navCtrl.navigateForward('/dispatch');
-  //     console.log('Logged in user:', user);
-  //   } catch (err) {
-  //     console.error('Login error:', err);
-  //   }
-  // }
+  async loginWithGoogle() {
+    try {
+      const user = await this.authService.loginWithGoogle();
+      // Handle successful login (e.g., navigate to another page)
+      this.navCtrl.navigateForward('/main');
+      console.log('Logged in user:', user);
+    } catch (err) {
+      console.error('Login error:', err);
+    }
+  }
 
   async presentToast(message: string) {
     const toast = await this.toastController.create({

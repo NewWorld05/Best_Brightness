@@ -47,6 +47,10 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },
+  {
+    path: 'view-all-slips',
+    loadChildren: () => import('./view-all-slips/view-all-slips.module').then( m => m.ViewAllSlipsPageModule)
+  },
 ];
 
 @NgModule({
