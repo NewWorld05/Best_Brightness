@@ -55,6 +55,10 @@ const routes: Routes = [
     path: 'update-inventory',
     loadChildren: () => import('./update-inventory/update-inventory.module').then( m => m.UpdateInventoryPageModule)
   },
+  {
+    path: 'analytics-shop',
+    loadChildren: () => import('./analytics-shop/analytics-shop.module').then( m => m.AnalyticsShopPageModule)
+  },
 ];
 
 @NgModule({
