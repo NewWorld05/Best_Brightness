@@ -51,6 +51,10 @@ const routes: Routes = [
     path: 'view-all-slips',
     loadChildren: () => import('./view-all-slips/view-all-slips.module').then( m => m.ViewAllSlipsPageModule)
   },
+  {
+    path: 'update-inventory',
+    loadChildren: () => import('./update-inventory/update-inventory.module').then( m => m.UpdateInventoryPageModule)
+  },
 ];
 
 @NgModule({

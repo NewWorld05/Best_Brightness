@@ -21,8 +21,9 @@
         <p>Size: {{ item.size }}</p>
         <p>Quantity: {{ item.quantity }}</p>
         <p>Picker: {{ item.pickerName }} {{ item.pickerSurname }} {{ item.employeeNumber }}</p>
+        <p>Employee Number: {{ item.employeeNumber }}</p>
         <p>Date: {{ item.date | date: 'medium' }}</p>
-      </ion-label>
+      </ion-label><br>
       <ion-item>
         <!-- <ion-label>Quantity to Move</ion-label> -->
         <ion-input type="number" [(ngModel)]="item.quantityToMove"></ion-input>

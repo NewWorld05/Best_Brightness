@@ -1,13 +1,18 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>ViewAllSlips</ion-title>
+  <ion-toolbar color="secondary">
+    <ion-title>View All Slips</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">ViewAllSlips</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let slip of deliverySlipData" class="slip-item">
+      <ion-label>
+        <h2 class="employee-number">Employee Number: {{ slip.employeeNumber }}</h2>
+        <p class="item-name">Item Name: {{ slip.itemName }}</p>
+        <p class="date">Date: {{ formatDate(slip.current) }}</p> <!-- Format date here -->
+      </ion-label>
+      <!-- <ion-button slot="end" (click)="generatePDF(slip)">Download</ion-button> -->
+    </ion-item>
+  </ion-list>
 </ion-content>
