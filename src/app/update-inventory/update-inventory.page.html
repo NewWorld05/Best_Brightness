@@ -1,14 +1,24 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>update-inventory</ion-title>
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>
+      Update Inventory
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
-  
-
-  
+<ion-content padding *ngIf="inventoryData">
+  <ion-card>
+    <ion-card-content>
+      <form (ngSubmit)="submit()">
+        <ion-item>
+          <ion-label position="stacked">Item Code</ion-label>
+          <ion-input type="text" [(ngModel)]="inventoryData.itemCode" disabled></ion-input>
+        </ion-item>
+        <!-- Add other form fields here -->
+        <ion-button expand="block" type="submit">Submit</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
 
 

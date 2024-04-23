@@ -9,7 +9,7 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-card>
+    <ion-card><ion-card-content>
     <ion-item *ngFor="let item of inventory">
       <ion-thumbnail slot="start">
         <img [src]="item.capturedPhotosUrl">
@@ -30,7 +30,9 @@
       </ion-item>
       <ion-button (click)="moveItemToShop(item, item.quantityToMove)" color="primary" expand="block">Move to Shop</ion-button>
     </ion-item>
-  </ion-card><br><br>
+  </ion-card-content>
+  </ion-card>
+<br><br>
   </ion-list>
   
 </ion-content>

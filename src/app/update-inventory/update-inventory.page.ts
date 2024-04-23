@@ -1,12 +1,8 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { finalize } from 'rxjs/operators';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
-import { LoadingController, NavController, ToastController } from '@ionic/angular';
-///import { LoadingController, NavController, ToastController } from '@ionic/angular';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-update-inventory',
@@ -15,22 +11,59 @@ import { LoadingController, NavController, ToastController } from '@ionic/angula
 })
 export class UpdateInventoryPage implements OnInit {
 
+  inventoryData: any;
+  itemCode: string =''; // Initialize itemCode
+
   constructor(
-    private renderer: Renderer2,
-    private loadingController: LoadingController,
     private route: ActivatedRoute,
-    private router: Router,
-    private firestore: AngularFirestore,
-    private fireStorage: AngularFireStorage
-  ) {
-    
-  }
+    private afDatabase: AngularFirestore,
+    private storage: AngularFireStorage,
+    private toastController: ToastController){}
 
   ngOnInit() {
-   
+    this.route.queryParams.subscribe(params => {
+      if (params['itemCode']) {
+        this.itemCode = params['itemCode'];
+        this.getInventoryData(this.itemCode);
+      }
+    });
   }
-  
-  
+
+  getInventoryData(itemCode: string) {
+    this.afDatabase.collection('inventory').doc(itemCode).valueChanges().subscribe(data => {
+      this.inventoryData = data;
+    });
+  }
+
+  async submit() {
+    try {
+      // Update the inventory document in Firestore
+      await this.afDatabase.collection('inventory').doc(this.itemCode).update({
+        // Update fields with new values
+        // Example:
+        category: this.inventoryData.category,
+        itemName: this.inventoryData.itemName,
+        // Add other fields as needed
+      });
+
+      console.log('UPDATED SUCCESSFULLY');
+      window.alert('Updated Successfully');
+      this.presentToast('Product was updated successfully');
+    } catch (error) {
+      console.log('Error updating inventory data:', error);
+      window.alert('Update unsuccessful');
+      this.presentToast('There was an error updating the product');
+    }
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 5000, // Duration in milliseconds
+      position: 'bottom' // Position of the toast
+    });
+    toast.present();
+  }
 }
 
 
