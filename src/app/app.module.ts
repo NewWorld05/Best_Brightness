@@ -12,9 +12,11 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
+import { ChartsModule } from 'ng2-charts';
+
 @NgModule({
   declarations: [AppComponent],
-  imports: [AngularFireAuthModule,AngularFireModule.initializeApp(environment.firebaseConfig),BrowserAnimationsModule,BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [ChartsModule,AngularFireAuthModule,AngularFireModule.initializeApp(environment.firebaseConfig),BrowserAnimationsModule,BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

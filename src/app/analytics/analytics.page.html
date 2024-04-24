@@ -10,9 +10,54 @@
 </ion-header>
 
 <ion-content>
+  <!-- Table -->
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <table>
+          <!-- Table headers -->
+          <thead>
+            <tr>
+              <th>Item Code</th>
+              <th>Name</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+          <!-- Table body -->
+          <tbody>
+            <tr *ngFor="let item of inventoryData">
+              <td>{{ item.itemCode }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ getItemQuantityStatus(item.quantity) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Chart -->
+  <div style="display: block">
+    <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType">
+    </canvas>
+  </div>
+</ion-content>
+
+<h2>Key</h2><br>
+  <p>0 = Empty</p>
+  <p>10 or less = Low</p>
+  <p>More than 10 = Sufficient</p>
+
+
+<!-- <ion-content>
   <div class="chart-container">
     <canvas #inventoryChartCanvas id="inventoryChartCanvas"></canvas>
     <canvas #storeChartCanvas id="storeChartCanvas"></canvas>
     <canvas #categoryPieChartCanvas id="categoryPieChartCanvas"></canvas>
   </div>
-</ion-content>
+</ion-content> -->
