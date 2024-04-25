@@ -9,7 +9,7 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-card><ion-card-content>
+    <ion-card>
     <ion-item *ngFor="let item of inventory">
       <ion-thumbnail slot="start">
         <img [src]="item.capturedPhotosUrl">
@@ -26,11 +26,12 @@
       </ion-label><br>
       <ion-item>
         <!-- <ion-label>Quantity to Move</ion-label> -->
-        <ion-input type="number" [(ngModel)]="item.quantityToMove"></ion-input>
-      </ion-item>
-      <ion-button (click)="moveItemToShop(item, item.quantityToMove)" color="primary" expand="block">Move to Shop</ion-button>
+        <ion-input type="number" [(ngModel)]="item.quantityToMove" class="input" placeholder="########"></ion-input>
+      </ion-item><br><br><br><br><br>
+
+      <ion-button class="but" (click)="moveItemToShop(item, item.quantityToMove)" color="primary" expand="block">Move<br>to Shop</ion-button>
     </ion-item>
-  </ion-card-content>
+  
   </ion-card>
 <br><br>
   </ion-list>

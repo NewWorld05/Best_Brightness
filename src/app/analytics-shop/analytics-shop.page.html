@@ -1,13 +1,29 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="end">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
     <ion-title>analytics-shop</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">analytics-shop</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <!-- <div style="display: block;">
+    <canvas baseChart 
+            [datasets]="barChartData.datasets"
+            [labels]="barChartData.labels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [plugins]="barChartPlugins"
+            [chartType]="'bar'">
+    </canvas>
+  </div> -->
+
+  <ion-card><canvas id="myChart1"></canvas></ion-card><br>
+  <ion-card>
+    <h3><b>Key</b></h3>
+    <p>0 = Empty</p>
+    <p>10 or less = Low</p>
+    <p>More than 10 = Sufficient</p><br>
+  </ion-card>
 </ion-content>

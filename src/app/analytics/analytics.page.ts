@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { InventoryService } from '../services/inventory.service';
+import { NavController } from '@ionic/angular';
+import { Item } from '../models/item.model'; // Import the Item interface
+import Chart from 'chart.js/auto';
 
 
 @Component({
@@ -9,55 +12,121 @@ import { InventoryService } from '../services/inventory.service';
 })
 export class AnalyticsPage implements OnInit {
 
-  inventoryData!: any[];
+  inventory: Item[] = [];
+  title = 'stock Chart';
+
+  //inventoryData!: any[];
 
   // Chart properties
-  public barChartOptions: any = {
-    scaleShowVerticalLines: false,
-    responsive: true
-  };
-  public barChartLabels: string[] = [];
-  public barChartType: string = 'bar';
-  public barChartLegend: boolean = true;
-  public barChartData: any[] = [];
+  // public barChartOptions: any = {
+  //   scaleShowVerticalLines: false,
+  //   responsive: true
+  // };
+  // public barChartLabels: string[] = [];
+  // public barChartType: string = 'bar';
+  // public barChartLegend: boolean = true;
+  // public barChartData: any[] = [];
 
-  constructor(private inventoryService: InventoryService) { }
+  constructor(private navCtrl: NavController,private inventoryService: InventoryService) { }
 
   ngOnInit() {
-    this.getInventoryData();
-  }
+    //this.getInventoryData();
+    this.fetchInventoryData(); // Fetch initial inventory data
 
-  getInventoryData() {
-    this.inventoryService.getInventory().subscribe(data => {
-      this.inventoryData = data;
-      this.processInventoryData();
+    // Subscribe to changes in inventory data
+    this.inventoryService.getInventory().subscribe(inventory => {
+      this.inventory = inventory;
+      this.updateChartData(); // Update chart data whenever inventory data changes
     });
   }
 
-  processInventoryData() {
-    // Process inventory data and prepare data for chart
-    // For example, count items in different categories
+  fetchInventoryData() {
+    this.inventoryService.getInventory().subscribe(res => {
+      this.inventory = res;
+      this.updateChartData(); // Update chart data after fetching initial inventory data
+    });
+  }
 
-    // Example code (count items in each category)
-    const categoriesMap = new Map<string, number>();
+  updateChartData() {
+    
+    const ctx = document.getElementById('myChart') as HTMLCanvasElement;
 
-    this.inventoryData.forEach(item => {
-      const category = item.category;
-      if (categoriesMap.has(category)) {
-        categoriesMap.set(category, categoriesMap.get(category)! + 1);
-      } else {
-        categoriesMap.set(category, 1);
+    // Check if a chart instance already exists
+  const existingChart = Chart.getChart(ctx);
+  if (existingChart) {
+    existingChart.destroy(); // Destroy the existing chart
+  }
+  
+    const myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: this.inventory.map(item => item.itemName),
+        datasets: [{
+          label: 'Quantities',
+          data: this.inventory.map(item => item.quantity || 0),
+          backgroundColor: this.inventory.map(item => {
+            if (item.quantity === 0) {
+              return 'rgba(255, 99, 132, 0.2)'; // Empty
+            } else if (item.quantity <= 15) {
+              return 'rgba(255, 206, 86, 0.2)'; // Low
+            } else {
+              return 'rgba(75, 192, 192, 0.2)'; // Sufficient
+            }
+          }),
+          borderColor: this.inventory.map(item => {
+            if (item.quantity === 0) {
+              return 'rgba(255, 99, 132, 1)';
+            } else if (item.quantity <= 15) {
+              return 'rgba(255, 206, 86, 1)';
+            } else {
+              return 'rgba(75, 192, 192, 1)';
+            }
+          }),
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
       }
     });
-
-    this.barChartLabels = Array.from(categoriesMap.keys());
-    this.barChartData = [{ data: Array.from(categoriesMap.values()), label: 'Inventory Count' }];
   }
+
+  // getInventoryData() {
+  //   this.inventoryService.getInventory().subscribe(data => {
+  //     this.inventoryData = data;
+  //     this.processInventoryData();
+  //   });
+  // }
+
+  // processInventoryData() {
+  //   // Process inventory data and prepare data for chart
+  //   // For example, count items in different categories
+
+  //   // Example code (count items in each category)
+  //   const categoriesMap = new Map<string, number>();
+
+  //   this.inventoryData.forEach(item => {
+  //     const category = item.category;
+  //     if (categoriesMap.has(category)) {
+  //       categoriesMap.set(category, categoriesMap.get(category)! + 1);
+  //     } else {
+  //       categoriesMap.set(category, 1);
+  //     }
+  //   });
+
+  //   this.barChartLabels = Array.from(categoriesMap.keys());
+  //   this.barChartData = [{ data: Array.from(categoriesMap.values()), label: 'Inventory Count' }];
+  // }
 
   getItemQuantityStatus(quantity: number): string {
     if (quantity <= 0) {
       return 'Empty';
-    } else if (quantity <= 10) {
+    } else if (quantity <= 20) {
       return 'Low';
     } else {
       return 'Sufficient';
