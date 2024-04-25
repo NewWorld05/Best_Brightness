@@ -110,4 +110,27 @@ export class AnalyticsShopPage implements OnInit {
       }
     });
   }
+
+
+  getQuantityStatus(quantity: number): string {
+    if (quantity === 0) {
+      return 'Empty';
+    } else if (quantity <= 15) {
+      return quantity.toString();
+    } else {
+      return 'Sufficient';
+    }
+  }
+
+  getQuantityStatusClass(quantity: number): string {
+    if (quantity === 0) {
+      return 'empty';
+    } else if (quantity <= 15) {
+      return 'low';
+    } else {
+      return 'sufficient';
+    }
+  }
+
+  
 }

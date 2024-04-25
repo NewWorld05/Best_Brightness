@@ -13,6 +13,7 @@ interface DeliverySlipData {
   size: string;
   description: string;
   date: string;
+  pickerSurname: string;
   
   current: firebase.firestore.Timestamp; // Use firebase.firestore.Timestamp for timestamp type
   capturedPhotosUrl: string;

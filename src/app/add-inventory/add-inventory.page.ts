@@ -4,6 +4,9 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { ToastController } from '@ionic/angular';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+(pdfMake as any).vfs = pdfFonts.pdfMake.vfs; 
 
 @Component({
   selector: 'app-add-inventory',
@@ -149,6 +152,47 @@ export class AddInventoryPage implements OnInit {
     const snapshot = await uploadTask;
 
     return snapshot.ref.getDownloadURL();
+  }
+
+  generateReceipt() {
+    const documentDefinition = {
+      content: [
+        { text: 'Best Brightness', style: 'logo' }, // Text for Best Brightness as logo
+        { text: 'Delivery Receipt', style: 'header' },
+        { text: Delivery Guy: ${this.deliveryGuy}, style: 'subheader' },
+        { text: Contact: ${this.deliveryGuyContact}, style: 'subheader' },
+        { text: 'Items Delivered:', style: 'subheader', alignment: 'center' }, // Center-align the items
+        this.generateItemList(),
+        { text: Remarks: ${this.remarks}, style: 'subheader' },
+        { text: 'Thank You!', style: 'footer', alignment: 'center' } // Add "Thank You" message at the end
+      ],
+      styles: {
+        header: {
+          fontSize: 22,
+          bold: true,
+          alignment: 'center',
+          margin: [0, 20, 0, 20] // Increase top margin
+        },
+        subheader: {
+          fontSize: 16,
+          bold: true,
+          margin: [0, 10, 0, 5]
+        },
+        footer: {
+          fontSize: 18,
+          bold: true,
+          margin: [0, 50, 0, 0] // Increase top margin
+        },
+        logo: {
+          fontSize: 24,
+          bold: true,
+          alignment: 'center',
+          margin: [0, 50, 0, 20] // Top and bottom margin for the logo
+        }
+      }
+    };
+  
+    pdfMake.createPdf(documentDefinition).download('Best Brightness Delivery Receipt.pdf');
   }
 
 }

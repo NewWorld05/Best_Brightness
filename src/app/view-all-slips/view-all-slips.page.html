@@ -8,6 +8,7 @@
   <ion-list>
     <ion-item *ngFor="let slip of deliverySlipData" class="slip-item">
       <ion-label>
+        <h2>{{ slip.pickerName}} {{slip.pickerSurname}}</h2>
         <h2 class="employee-number">Employee Number: {{ slip.employeeNumber }}</h2>
         <p class="item-name">Item Name: {{ slip.itemName }}</p>
         <p class="date">Date: {{ formatDate(slip.current) }}</p> <!-- Format date here -->

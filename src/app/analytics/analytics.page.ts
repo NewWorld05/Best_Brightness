@@ -56,7 +56,7 @@ export class AnalyticsPage implements OnInit {
   if (existingChart) {
     existingChart.destroy(); // Destroy the existing chart
   }
-  
+
     const myChart = new Chart(ctx, {
       type: 'bar',
       data: {
@@ -123,15 +123,26 @@ export class AnalyticsPage implements OnInit {
   //   this.barChartData = [{ data: Array.from(categoriesMap.values()), label: 'Inventory Count' }];
   // }
 
-  getItemQuantityStatus(quantity: number): string {
-    if (quantity <= 0) {
+  getQuantityStatus(quantity: number): string {
+    if (quantity === 0) {
       return 'Empty';
-    } else if (quantity <= 20) {
-      return 'Low';
+    } else if (quantity <= 15) {
+      return quantity.toString();
     } else {
       return 'Sufficient';
     }
   }
+
+  getQuantityStatusClass(quantity: number): string {
+    if (quantity === 0) {
+      return 'empty';
+    } else if (quantity <= 15) {
+      return 'low';
+    } else {
+      return 'sufficient';
+    }
+  }
+  
 }
 
 

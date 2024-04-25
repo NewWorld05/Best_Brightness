@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { ToastController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-inventory',
@@ -12,7 +12,7 @@ export class InventoryPage implements OnInit {
   inventory: any[] = []; // Initialize inventory array
   quantityToMove: number = 0; // Initialize quantityToMove variable
 
-  constructor(private afDatabase: AngularFirestore, private toastController: ToastController) { }
+  constructor(private afDatabase: AngularFirestore, private toastController: ToastController, private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     this.getInventory();
@@ -20,6 +20,7 @@ export class InventoryPage implements OnInit {
   }
 
   getInventory() {
+    
     this.afDatabase.collection('inventory', ref => ref.orderBy('date', 'desc'))
       .valueChanges().subscribe((data: any[]) => {
         this.inventory = data;
@@ -40,7 +41,7 @@ moveItemToShop(item: any, quantityToMove: number) {
           })
           .then(() => {
             //console.log(`${quantityToMove} ${item.itemName} moved to the shop successfully`);
-            window.alert(`${quantityToMove} ${item.itemName} moved to the shop successfully`);
+            //window.alert(`${quantityToMove} ${item.itemName} moved to the shop successfully`);
             this.presentToast(`${quantityToMove} ${item.itemName} moved to the shop successfully`);
           })
           .catch(error => {
@@ -85,7 +86,7 @@ moveItemToShop(item: any, quantityToMove: number) {
             })
             .then(() => {
              // console.log(`${quantityToMove} ${item.itemName} moved to the shop successfully`);
-             window.alert(`${quantityToMove} ${item.itemName} moved to the shop successfully`);
+             //window.alert(`${quantityToMove} ${item.itemName} moved to the shop successfully`);
               this.presentToast(`${quantityToMove} ${item.itemName} moved to the shop successfully`);
             })
             .catch(error => {
