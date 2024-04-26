@@ -48,6 +48,11 @@
         <ion-input [(ngModel)]="inventory.itemCode" name="itemCode" type="number" label="Item Code" label-placement="floating" fill="outline" placeholder="Enter item code" required></ion-input>
       </ion-item><br>
 
+      <ion-item>
+        <ion-label></ion-label>
+        <ion-input [(ngModel)]="inventory.status" name="status" label="Status" label-placement="floating" fill="outline" placeholder="Enter status of delivery" required></ion-input>
+      </ion-item><br>
+
       <ion-item class="a">
         
         <!-- Display the captured image here if needed -->
@@ -66,17 +71,22 @@
 
       <ion-item>
         <ion-label></ion-label>
-        <ion-input [(ngModel)]="picker.name" name="pickerName" label="Picker Name" label-placement="floating" fill="outline" placeholder="Enter Name" required></ion-input>
+        <ion-input [(ngModel)]="deliver.name" name="pickerName" label="Picker Name" label-placement="floating" fill="outline" placeholder="Enter Name" required></ion-input>
       </ion-item><br>
 
       <ion-item>
         <ion-label></ion-label>
-        <ion-input [(ngModel)]="picker.surname" name="pickerSurname" label="Picker Surname" label-placement="floating" fill="outline" placeholder="Enter Surname" required></ion-input>
+        <ion-input [(ngModel)]="deliver.surname" name="pickerSurname" label="Picker Surname" label-placement="floating" fill="outline" placeholder="Enter Surname" required></ion-input>
       </ion-item><br>
 
       <ion-item>
         <ion-label></ion-label>
-        <ion-input [(ngModel)]="picker.employeeNumber" name="employeeNumber" label="Employee Number" label-placement="floating" fill="outline" placeholder="Enter Employee Number" required></ion-input>
+        <ion-input [(ngModel)]="deliver.contact" name="pickerContact" label="Picker Contact Number" label-placement="floating" fill="outline" placeholder="Enter contact number" required></ion-input>
+      </ion-item><br>
+
+      <ion-item>
+        <ion-label></ion-label>
+        <ion-input [(ngModel)]="deliver.employeeNumber" name="employeeNumber" label="Employee Number" label-placement="floating" fill="outline" placeholder="Enter Employee Number" required></ion-input>
       </ion-item>
 
     </ion-card>
@@ -84,12 +94,19 @@
     
   </ion-list>
 
-  <ion-item>
+  <ion-item #btns>
     <ion-item>
-      <ion-button type="submit" (click)="submit()">Add to Inventory</ion-button>
-      
-      
+      <ion-button type="submit" (click) = "addItem()">Submit</ion-button>
     </ion-item>
+
+     <ion-item>
+      <ion-button type="submit" (click)="submit()">Add to Inventory</ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-button type="submit" (click)="generateReceipt()">Generate Reciept</ion-button>
+    </ion-item>
+
   </ion-item>
 
   <!-- <ion-button type="submit" [disabled]="!inventoryForm.valid">Add to Inventory</ion-button> -->

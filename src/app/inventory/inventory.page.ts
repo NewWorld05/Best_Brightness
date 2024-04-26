@@ -9,6 +9,8 @@ import { LoadingController, ToastController } from '@ionic/angular';
 })
 export class InventoryPage implements OnInit {
 
+  isLoading:boolean = true
+
   inventory: any[] = []; // Initialize inventory array
   quantityToMove: number = 0; // Initialize quantityToMove variable
 
@@ -20,10 +22,18 @@ export class InventoryPage implements OnInit {
   }
 
   getInventory() {
+
+    // const loading = await this.loadingCtrl.create({
+    //   message: 'Loading data',
+    //   spinner: 'circles',
+    // });
+    // await loading.present();
     
     this.afDatabase.collection('inventory', ref => ref.orderBy('date', 'desc'))
       .valueChanges().subscribe((data: any[]) => {
         this.inventory = data;
+        // this.isLoading = false; //set isLoading to false once data is fetched
+        // loading.dismiss();//dismiss loading indicator
       });
   }
 

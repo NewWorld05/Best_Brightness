@@ -8,8 +8,28 @@
 </ion-header>
 
 <ion-content padding>
+  <!-- <div *ngFor="let item of inventory">
+    <ion-card-header>
+      <ion-card>
+        <ion-card-content>
+          <p><strong>Item Name:</strong> {{ item.itemName}}</p>
+          <p><strong>Quantity:</strong> {{ item.quantity }}</p>
+          <img [src]="item.capturedPhotosUrl">
+          <p *ngFor="item.quantity < 60" style="color:red;"></p><strong>Warning: Quantity below 60!</strong>
+        </ion-card-content>
+      </ion-card>
+    </ion-card-header>
+  </div>
+  <ng-template #loading>
+    <p>Loading...</p>
+  </ng-template> -->
+
+
+
+
   <ion-list>
     <ion-card>
+      
     <ion-item *ngFor="let item of inventory">
       <ion-thumbnail slot="start">
         <img [src]="item.capturedPhotosUrl">
